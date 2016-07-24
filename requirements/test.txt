@@ -1,0 +1,4 @@
+# Dependencies related to testing reformed-nous
+-r base.txt
+# Code Coverage
+coverage==4.0.3

@@ -1,0 +1,38 @@
+language: python
+services:
+  - postgresql
+  - redis-server
+python:
+  - "2.7"
+before_script:
+- export DATABASE_URL=postgres://postgres@localhost/reformed_nous
+- export DJANGO_SECRET=`openssl rand -base64 32`
+- psql -c 'CREATE DATABASE "reformed_nous";' -U postgres
+install:
+  - "pip install -r requirements/test.txt"
+script:
+  - ./reformed_nous/manage.py test reformed_nous
+after_success:
+  - coveralls
+
+deploy:
+  provider: heroku
+  app:
+    master: reformed_nous-dev
+    qa: reformed_nous-qa
+    prod: reformed_nous-prod
+  on:
+    repo: monty5811/reformed-nous
+  run:
+    - "./reformed_nous/manage.py migrate"
+
+notifications:
+  email: false
+
+# This reportedly works around an issue downloading packages from pypi on
+# travis. Consider removing this after the underlying issue is fixed.
+# https://github.com/travis-ci/travis-ci/issues/2389
+sudo: false
+
+matrix:
+  fast_finish: true

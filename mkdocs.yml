@@ -1,0 +1,11 @@
+site_name: reformed_nous
+site_description: reformed nous
+repo_url: https://github.com/monty5811/reformed-nous
+site_dir: site
+copyright: Copyright &copy; 2015, <a href="https://github.com/monty5811">monty5811</a>.
+
+pages:
+  - Home: 'index.md'
+  - API:
+    - Authentication: 'api/authentication.md'
+    - Users: 'api/users.md'

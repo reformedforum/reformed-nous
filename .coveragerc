@@ -1,0 +1,10 @@
+[run]
+branch = True
+omit = *migrations*,
+       *urls*,
+       *test*,
+       *admin*,
+       ./reformed_nous/config/*,
+       ./reformed_nous/manage.py,
+       ./reformed_nous/wsgi.py,
+       *__init__*
