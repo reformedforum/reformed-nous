@@ -9,9 +9,13 @@ from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
 from users.views import UserViewSet
+from nous.views import AuthorViewSet, ResourceViewSet, TopicViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'authors', AuthorViewSet)
+router.register(r'resources', ResourceViewSet)
+router.register(r'topics', TopicViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -20,5 +24,10 @@ urlpatterns = [
 
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
-    url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
+    url(
+        r'^$',
+        RedirectView.as_view(
+            url=reverse_lazy('api-root'), permanent=False
+        )
+    ),
 ]

@@ -1,8 +1,6 @@
 from .common import *
 import os
 
-from urllib import parse as urlparse
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 # https://devcenter.heroku.com/articles/getting-started-with-django
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -19,34 +17,28 @@ SECURE_SSL_REDIRECT = True
 # Site
 # https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["*"]
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', '90184osahdf0w9e78r023df;qloiure0-29384'
+)
 
 # Template
 # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
+    (
+        'django.template.loaders.cached.Loader', (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )
+    ),
 )
 
 # Static files
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Caching
-redis_url = urlparse.urlparse(os.environ.get('REDIS_URL', 'redis://localhost:6379'))
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '{}:{}'.format(redis_url.hostname, redis_url.port),
-        'OPTIONS': {
-            'DB': 0,
-            'PASSWORD': redis_url.password,
-            'PARSER_CLASS': 'redis.connection.HiredisParser',
-            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
-            'CONNECTION_POOL_CLASS_KWARGS': {
-                'max_connections': 50,
-                'timeout': 20,
-            }
-        }
+        'BACKEND': 'django_redis.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://localhost:6379'),
     }
 }

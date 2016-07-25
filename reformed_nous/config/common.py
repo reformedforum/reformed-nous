@@ -2,7 +2,6 @@ import os
 from os.path import join
 import dj_database_url
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INSTALLED_APPS = (
@@ -14,12 +13,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Third party apps
-    'rest_framework',            # utilities for rest apis
+    'rest_framework',  # utilities for rest apis
     'rest_framework.authtoken',  # token authentication
 
     # Your apps
     'authentication',
     'users',
+    'nous',
 )
 
 # https://docs.djangoproject.com/en/1.8/topics/http/middleware/
@@ -41,17 +41,17 @@ WSGI_APPLICATION = 'wsgi.application'
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-MANAGERS = (
-    ('Author', 'montgomery.dean97@gmail.com'),
-)
+MANAGERS = (('Author', 'montgomery.dean97@gmail.com'), )
 
 # Postgres
-# DATABASES = {'default': dj_database_url.parse('postgres://localhost/reformed_nous', conn_max_age=600)}
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'reformed_nous',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get(
+            'DATABASE_URL',
+            'postgres://nous:reformed-nous@localhost/reformed_nous'
+        ),
+        conn_max_age=600
+    )
 }
 
 # General
@@ -67,7 +67,6 @@ LOGIN_REDIRECT_URL = '/'
 
 # Static Files
 STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
-STATICFILES_DIRS = [join(os.path.dirname(BASE_DIR), 'static'), ]
 STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -77,7 +76,6 @@ STATICFILES_FINDERS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [STATICFILES_DIRS],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -88,11 +86,13 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages'
             ],
-            'loaders':[
-                ('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                ]),
+            'loaders': [
+                (
+                    'django.template.loaders.cached.Loader', [
+                        'django.template.loaders.filesystem.Loader',
+                        'django.template.loaders.app_directories.Loader',
+                    ]
+                ),
             ],
         },
     },
@@ -115,7 +115,8 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format':
+            '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -147,7 +148,8 @@ AUTH_USER_MODEL = 'users.User'
 
 # Django Rest Framework
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS':
+    'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
     'DEFAULT_RENDERER_CLASSES': (

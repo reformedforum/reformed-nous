@@ -1,5 +1,4 @@
 #reformed-nous
-[![Build Status](https://travis-ci.org/monty5811/reformed-nous.svg?branch=master)](https://travis-ci.org/monty5811/reformed-nous)
 
 reformed nous. Check out the project's [documentation](http://monty5811.github.io/reformed-nous/).
 
@@ -26,6 +25,7 @@ Create the database:
 
 ```bash
 createdb reformed_nous
+createuser
 ```
 Initialize the git repository
 
@@ -40,26 +40,7 @@ python reformed_nous/manage.py migrate
 python reformed_nous/manage.py createsuperuser
 ```
 
-Run the development server: 
+Run the development server:
 ```bash
 python reformed_nous/manage.py runserver
-```
-
-# Create Servers
-By default the included fabfile will setup three environments:
-
-- dev -- The bleeding edge of development
-- qa -- For quality assurance testing
-- prod -- For the live application
-
-Create these servers on Heroku with:
-
-```bash
-fab init
-```
-
-# Automated Deployment
-Deployment is handled via Travis. When builds pass Travis will automatically deploy that branch to Heroku. Enable this with:
-```bash
-travis encrypt $(heroku auth:token) --add deploy.api_key
 ```

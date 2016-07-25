@@ -1,1 +1,1 @@
-web: gunicorn reformed_nous.wsgi:application
+web: gunicorn --pythonpath="$PWD/reformed_nous" wsgi:application
