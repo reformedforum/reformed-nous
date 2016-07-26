@@ -2,7 +2,7 @@
 
 *a reformed brain*
 
-See [here](http://reformed.tech/2016/07/developing-a-common-brain-for-our-systems/) for more detials.
+See [here](http://reformed.tech/2016/07/developing-a-common-brain-for-our-systems/) for more details.
 
 **Note:** this is a very early stage project and there are likely to be a large number of breaking changes before we hit v1.
 
