@@ -10,13 +10,19 @@ class AuthorSerializer(serializers.ModelSerializer):
                   'name', )
 
 
-class ResourceSerializer(serializers.ModelSerializer):
+class ResourceSerializer(serializers.HyperlinkedModelSerializer):
+    included_serializers = {'authors': 'nous.serializers.AuthorSerializer', }
+
     class Meta:
         model = Resource
-        fields = ('id',
-                  'name',
-                  'media_type',
-                  'details', )
+        fields = (
+            'id',
+            'name',
+            'media_type',
+            'authors',
+            'topics',
+            'details',
+        )
 
 
 class TopicSerializer(serializers.ModelSerializer):
