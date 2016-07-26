@@ -4,7 +4,15 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 
-class Author(models.Model):
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Author(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
 
@@ -12,7 +20,7 @@ class Author(models.Model):
         return self.name
 
 
-class Topic(models.Model):
+class Topic(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
 
@@ -20,7 +28,7 @@ class Topic(models.Model):
         return self.name
 
 
-class Resource(models.Model):
+class Resource(BaseModel):
     BOOK = 'BOOK'
     ARTICLE = 'ARTICLE'
     AUDIO = 'AUDIO'
@@ -45,7 +53,7 @@ class Resource(models.Model):
     )
     authors = models.ManyToManyField(Author)
     topics = models.ManyToManyField(Topic)
-    details = JSONField(null=True)
+    details = JSONField(blank=True)
 
     def __str__(self):
         return self.name
