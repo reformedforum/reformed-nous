@@ -1,20 +1,29 @@
-#reformed-nous
+# reformed-nous
 
-reformed nous. Check out the project's [documentation](http://monty5811.github.io/reformed-nous/).
+*a reformed brain*
 
-# Prerequisites
+See [here](http://reformed.tech/2016/07/developing-a-common-brain-for-our-systems/) for more detials.
+
+**Note:** this is a very early stage project and there are likely to be a large number of breaking changes before we hit v1.
+
+## Setting up a Local Environment
+
+### Prerequisites
 - [virtualenv](https://virtualenv.pypa.io/en/latest/)
 - [postgresql](http://www.postgresql.org/)
-- [redis](http://redis.io/)
-- [travis cli](http://blog.travis-ci.com/2013-01-14-new-client/)
-- [heroku toolbelt](https://toolbelt.heroku.com/)
 
-# Initialize the project
+### Setup
+Clone the repo:
+```bash
+git clone https://github.com/reformedforum/reformed-nous.git
+```
+
 Create and activate a virtualenv:
 
 ```bash
-virtualenv env
-source env/bin/activate
+cd reformed-nous
+python3 -m venv venv # you may need to add --without-pip and then install pip on some versions of Ubuntu
+. venv/bin/activate
 ```
 Install dependencies:
 
@@ -25,13 +34,8 @@ Create the database:
 
 ```bash
 createdb reformed_nous
-createuser
-```
-Initialize the git repository
-
-```
-git init
-git remote add origin git@github.com:monty5811/reformed-nous.git
+createuser --interactive -P
+# setup a "nous" user with the password "reformed-nous", or set DATABASE_URL with your user, pass and db
 ```
 
 Migrate the database and create a superuser:
@@ -44,3 +48,10 @@ Run the development server:
 ```bash
 python reformed_nous/manage.py runserver
 ```
+
+Now open localhost:8000 in your web browser to get started.
+The admin panel can be found at `/admin/` where you can add some dummy data to get started.
+
+### Running test suite
+
+TODO
