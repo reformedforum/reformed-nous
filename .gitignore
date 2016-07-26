@@ -27,3 +27,5 @@ pip-log.txt
 
 env
 site
+
+.cache/

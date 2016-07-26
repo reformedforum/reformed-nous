@@ -54,4 +54,6 @@ The admin panel can be found at `/admin/` where you can add some dummy data to g
 
 ### Running test suite
 
-TODO
+```bash
+py.test reformed_nous
+```
