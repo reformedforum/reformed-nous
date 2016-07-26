@@ -4,9 +4,12 @@ Django<1.10
 psycopg2==2.6.1
 dj-database-url==0.4.0
 # Rest apis
-djangorestframework==3.3.3
+djangorestframework==3.4.0
 Markdown==2.6.6
 # Static files
 whitenoise==3.0
 # Time zones support
 pytz==2016.3
+# better shell
+django-extensions==1.6.7
+ipython==5.0.0

@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     # Third party apps
     'rest_framework',  # utilities for rest apis
     'rest_framework.authtoken',  # token authentication
+    'django_extensions',  # nicer shell
 
     # Your apps
     'authentication',
