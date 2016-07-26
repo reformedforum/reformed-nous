@@ -4,15 +4,21 @@ from .models import Author, Resource, Topic
 
 
 class AuthorSerializer(serializers.ModelSerializer):
+    resources = serializers.HyperlinkedRelatedField(
+        source='resource_set',
+        many=True,
+        read_only=True,
+        view_name='resource-detail'
+    )
+
     class Meta:
         model = Author
         fields = ('id',
-                  'name', )
+                  'name',
+                  'resources', )
 
 
 class ResourceSerializer(serializers.HyperlinkedModelSerializer):
-    included_serializers = {'authors': 'nous.serializers.AuthorSerializer', }
-
     class Meta:
         model = Resource
         fields = (
@@ -26,7 +32,15 @@ class ResourceSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class TopicSerializer(serializers.ModelSerializer):
+    resources = serializers.HyperlinkedRelatedField(
+        source='resource_set',
+        many=True,
+        read_only=True,
+        view_name='resource-detail'
+    )
+
     class Meta:
         model = Topic
         fields = ('id',
-                  'name', )
+                  'name',
+                  'resources', )
