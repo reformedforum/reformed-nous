@@ -6,6 +6,8 @@ See [here](http://reformed.tech/2016/07/developing-a-common-brain-for-our-system
 
 **Note:** this is a very early stage project and there are likely to be a large number of breaking changes before we hit v1.
 
+We are still in the planning stages - this repo is more of a conversation starter than anything. We are planning on fleshing out a solid set of requirements and a plan to make it easy for people to contribute. Any help is very welcome! Please feel free to jump into the [issues](https://github.com/reformedforum/reformed-nous/issues) and contribute.
+
 ## Setting up a Local Environment
 
 ### Prerequisites
