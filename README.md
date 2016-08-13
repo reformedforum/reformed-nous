@@ -8,6 +8,25 @@ See [here](http://reformed.tech/2016/07/developing-a-common-brain-for-our-system
 
 We are still in the planning stages - this repo is more of a conversation starter than anything. We are planning on fleshing out a solid set of requirements and a plan to make it easy for people to contribute. Any help is very welcome! Please feel free to jump into the [issues](https://github.com/reformedforum/reformed-nous/issues) and contribute.
 
+## Overall Vision
+
+This application will provide a structure for theological resources. The big entities are people, books, and Scripture references, since these items drive much of the conversation within the Reformed theological community generally and at [Reformed Forum](http://reformedforum.org), specifically. Nearly every podcast episode or blog post references people, books, or Scripture references. At the same time, it’s hard to find resources given any one of these entities. Consider a few use cases:
+
+* You’re studying Philippians 2:5–11 and are looking for resources that deal with the subject. You’d like to listen to podcasts and sermons, read blog posts, journal articles, or books that reference these verses.
+* You’re listening to a podcast episode and someone mentioned a book. You’d like to buy that book and join in an online discussion about it. Perhaps you’re also interested in downloading a study guide to help you lead a discussion group on the book.
+* Someone suggested you look into reading John Murray’s *Redemption Accomplished and Applied*. You search our site and find several places where you can buy new and used copies. You also notice a podcast episode devoted to the book, other books by John Murray, and an online discussion group currently reading the book together.
+* You’d like to subscribe to an RSS feed for all of Sinclair Ferguson’s books, posts, conference addresses, and sermons.
+
+We envision a database and application that allows us to structure all of Reformed Forum’s resources as well as trusted resources from around the web. In a way, this would be the brain behind a next-generation hybrid between [Monergism.com](http://www.monergism.com) and [SermonAudio.com](http://www.sermonaudio.com).
+
+This application will also provide an API so that other applications may use the exposed data and functionality of this system.
+
+## Concrete Requirements
+
+## Application Stack
+
+## Future Ideas
+
 ## Setting up a Local Environment
 
 ### Prerequisites
