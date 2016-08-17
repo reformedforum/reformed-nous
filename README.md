@@ -23,9 +23,24 @@ This application will also provide an API so that other applications may use the
 
 ## Concrete Requirements
 
+**TODO**
+ - 
+ - 
+
+## Data Schema
+
+**TODO**
+
+On a first pass, we should be able to import all the people and resources from Reformed Forum and be able to link out to related books, other resources and relevant scripture references.
+
 ## Application Stack
 
-## Future Ideas
+ - The django based api currently in this repo is more of a conversation starter than anything else. The language/framework used should be determined by those who will be contributing - open an issue and let's talk about it if you are interested!
+
+## Far Future Ideas
+
+ - Automatically index audio files (speech to text)
+ - ???
 
 ## Setting up a Local Environment
 
